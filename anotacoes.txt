@@ -1,1 +1,8 @@
-//teste
+Na pasta model tem a classe questão e a classe resposta
+Na pasta Api tem dois serviços um fornece as perguntas eo outro eo questionário 
+As perguntas vem do arquivo banco de questões que esta sendo importado para dentro
+do serviço questões que faz a leitura do arquivo e retorna os dados organizados como 
+objetos
+
+
+
