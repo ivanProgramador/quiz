@@ -1,3 +1,4 @@
+import { embaralhar } from "@/functions/arrays"
 import RespostaModel from "./resposta"
 
 export default class QuestaoModel{
@@ -6,13 +7,14 @@ export default class QuestaoModel{
     #enunciado:string 
     #respostas:RespostaModel[]
     #acertou:boolean 
-    //#respondida:boolean
+   // #respondida:boolean
     
     constructor(id:number,enunciado:string,repostas:RespostaModel[],acertou:false){
         this.#id = id 
         this.#enunciado = enunciado
         this.#respostas = repostas
         this.#acertou = acertou
+       
     }
 
     get id(){
@@ -28,6 +30,20 @@ export default class QuestaoModel{
         return this.#acertou
     }
 
+  
+
+
+
+    embaralharRespostas():QuestaoModel{
+        
+        let respostasEmbaralhadas = embaralhar(this.#respostas)
+
+        return new QuestaoModel(this.#id,this.#enunciado,respostasEmbaralhadas,this.#acertou = false )
+    }
+
+
+
+
 
     get respondida(){
         /*
@@ -40,7 +56,7 @@ export default class QuestaoModel{
             /*
               agora eu testo se a reposta foi revelada
               se sim eu retorno true se uma resposta foi revelada 
-              eu ja ssei qua pergunta foi respondida 
+              eu já sei que pergunta foi respondida 
             */ 
 
             if(resposta.revelada) return true
@@ -51,11 +67,39 @@ export default class QuestaoModel{
         return false 
      }
 
+
+     /*
+        Esse metodo vai receber a resposta que o usuario deu 
+        e analisar se ela está correta para isso ele vai fazer um teste 
+        no atraibuto correta dela se ele estiver true ok se não estiver 
+        ele vai revelar a resposta correta  
+     
+     */
+     responderCom(indice:number):QuestaoModel{
+
+        //testando se a reposta está certa
+        const acertou = this.#respostas[indice]?.certa
+
+        /* 
+          de qualquer forma eu vou precisar retornar outra lista de questões tanto para mostrar 
+          a ele qual é a correta quanto para mostrar a alternativa que ele escolheu  
+        */  
+        const respostas = this.#respostas.map((resposta,i)=>{
+            const respostaSelecionada = indice === i 
+            const deveRevelar = respostaSelecionada || resposta.certa 
+            return respostaSelecionada ? resposta.revelar() : resposta
+        })
+
+      
+        
+
+     }
+
      /* 
       essa função vai converter a questão recebida como parâmetro
       para um objeto literal que será retornado pela api,
       no caso do ataibuto respostas ele recebe um array de respostas
-      por isso eu usop o map para oder ler cada uma delas e depois converter para objeto literal 
+      por isso eu usop o map para poder ler cada uma delas e depois converter para objeto literal 
       para que api possa retornar 
      */
 

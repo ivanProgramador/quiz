@@ -17,6 +17,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/questionario"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/questionario", "pages/api/bancoDeQuestoes.js"],
   "exclude": ["node_modules"]
 }

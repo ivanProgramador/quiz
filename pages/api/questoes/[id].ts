@@ -1,6 +1,6 @@
 import questoes from '../bancoDeQuestoes'
 
-export default (req:any,res:any)=>{
+export default (req,res)=>{
      
      /*
       pegando o id da pergunta que foi solicitada pela requisição 
@@ -12,7 +12,7 @@ export default (req:any,res:any)=>{
      const unicaQuestaoOuNada = questoes.filter(questao => questao.id === idSelecionado); 
 
      if(unicaQuestaoOuNada.length === 1){
-          const questaoSelecionada = unicaQuestaoOuNada[0]
+          const questaoSelecionada = unicaQuestaoOuNada[0].embaralharRespostas()
           res.status(200).json(questaoSelecionada.converterParaObjeto())
      }else{
           res.status(204).send()

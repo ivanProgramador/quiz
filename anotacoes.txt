@@ -51,6 +51,62 @@ export default (req,res)=>{
 }
 
 
+-------------------------------------------------------------------------------------------------------
+Ebaralhamento de itens isso é necessário neste projeto porque se o usuario souber
+onde fica a resposta certa isso vai comprimenter a ideia central do sistema então um função 
+será criada.
+
+entendendo o embaralhamento
+
+supondo que eu tenho um array com 4 itens 
+
+numeros=[301,302,303,304]
+
+eu posso usar a função map dos arry para fazer um loop nos seus indices se são 
+4 indices e a acada vez que esse loop executar ele cria um objeto literal que tem 
+2 informações 
+
+1 - o valor do numero
+2 - a variável aleatório(eu fixei o valor 1 por isso serão 4 variáveis com o mesmo valor) 
+
+numeros.map(num=>{numeros:num,aleatorio=1})
+
+para embaralhar eu preciso usar uma função que gere numeros aleatórios nisso ao inves de receber o valor
+1 a minha variável aleatorio vai executar a função Math.random() que vai gerar um valor aleatório pra ela 
+cada vez que ela for gerada ou seja eu vou ter 4 numeros aleatorios 
+
+numeros.map(num=>{numeros:num,aleatorio:Math.random})
+
+Ordenando os numeros aleatórios 
+
+Quando eu uso o sort depois de gerar esses resultados ele vai gerar 2 objetos que tem 2 atributos 
+
+1 - num 
+2 - aleatorio 
+
+se são objetos diferentes eles tem atributos diferentes também inclusive os numero aleatórios
+então pego somente o valor aleatrio de cada um deles e subtraio o numero do objeto 1 pelo numero do objeto 2 
+gerando um ordenação crescente 
+
+numeros.map(num=>{numeros:num,aleatorio:Math.random}).sort((obj1,obj2) => ob1.aleatorio - obj2.aleatorio)
+
+depois de fazer isso eu faço um map que vai trazer os numeros ordenados de forma aleatória
+
+numeros.map(num=>{numeros:num,aleatorio:Math.random}).sort((obj1,obj2) => ob1.aleatorio - obj2.aleatorio).map(obj=>obj.valor)
+
+assim eu recupero o mesmo array so que ordenado com base no numero aleatorio que criei 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
