@@ -1,3 +1,8 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "lint" : "./node_modules/.bin/eslint .",
+  "rules": {
+"no-console": "off", // desativa a regra que proíbe o uso de console
+"semi": "warn" // muda a regra de erro para warning
+}
 }
