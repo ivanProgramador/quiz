@@ -4,5 +4,57 @@ As perguntas vem do arquivo banco de questões que esta sendo importado para den
 do serviço questões que faz a leitura do arquivo e retorna os dados organizados como 
 objetos
 
+fluxo de um questão
+A classe quuestão model representa uma questão com os traibutos necessários 
+o arquivo banco de questoes aciona essa classe e cria instancias dela nesse caso 
+eu criei um array que possui objetos que perntencem a classe de questões  
+
+---------------------------------------------------------------------------------------
+const questoes: QuestaoModel[] = [
+    
+    new QuestaoModel(306,'Qual bicho transmite a Doença de chagas ?',[
+
+        RespostaModel.errada('Abelha'),
+        RespostaModel.errada('Barata'),
+        RespostaModel.errada('Pulga'),
+        RespostaModel.certa('Barbeiro'),
+    ]),
+    new QuestaoModel(306,'Qual fruto é conhecido no Norte Nordeste como jerimum  ?',[
+
+        RespostaModel.errada('Caju'),
+        RespostaModel.errada('Côco'),
+        RespostaModel.errada('chuchu'),
+        RespostaModel.certa('Abobora'),
+    ])
+
+
+]
+
+export default questoes 
+
+
+
+
+--------------------------------------------------------------------------------------
+
+então onde eu quiser ler essas questões basta que eu importe o arquivo, que é o caso da api 
+e quando algum requisita esses dados alem de enviar o array de questões eu tenho que converter essas 
+questões para objeto literal para que a api possa retornar. 
+cada classe tanto questão como reposta tem o seu método de conversão.   
+
+import questoes from '../bancoDeQuestoes'
+
+
+export default (req,res)=>{
+        
+     res.status(200).json(questoes[0].converterParaObjeto());
+}
+
+
+
+
+
+
+
 
 

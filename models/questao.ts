@@ -51,11 +51,19 @@ export default class QuestaoModel{
         return false 
      }
 
-     paraObjeto(){
+     /* 
+      essa função vai converter a questão recebida como parâmetro
+      para um objeto literal que será retornado pela api,
+      no caso do ataibuto respostas ele recebe um array de respostas
+      por isso eu usop o map para oder ler cada uma delas e depois converter para objeto literal 
+      para que api possa retornar 
+     */
+
+     converterParaObjeto(){
         return{
             id: this.#id,
             enunciado: this.#enunciado,
-            respostas: [],
+            respostas: this.#respostas.map(resp => resp.paraObjeto()),
             acertou: this.#acertou
 
         }
