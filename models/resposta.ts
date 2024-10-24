@@ -3,11 +3,13 @@ export default class RespostaModel{
      #valor: string
      #certa: boolean
      #revelada: boolean 
+    
      
      constructor(valor:string,certa:boolean,revelada=false){
         this.#valor = valor 
         this.#certa = certa 
         this.#revelada = revelada
+        
      }
 
       static certa(valor:string){

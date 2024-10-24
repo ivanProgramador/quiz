@@ -68,32 +68,58 @@ export default class QuestaoModel{
      }
 
 
-     /*
-        Esse metodo vai receber a resposta que o usuario deu 
-        e analisar se ela está correta para isso ele vai fazer um teste 
-        no atraibuto correta dela se ele estiver true ok se não estiver 
-        ele vai revelar a resposta correta  
-     
-     */
-     responderCom(indice:number):QuestaoModel{
 
-        //testando se a reposta está certa
+
+
+     reponderCom(indice:number):QuestaoModel{
+
+        /*
+         Verificando se o cliente acertou a resposta.
+         Oque vai chegar aqui é um array com os objetos baseados
+         na classe resposta esses objetos tem o atributo 
+         acertou, é esse atributo que eu estou testando
+         o simbolo ? verifica se o atributo certa é true
+        */
         const acertou = this.#respostas[indice]?.certa
 
-        /* 
-          de qualquer forma eu vou precisar retornar outra lista de questões tanto para mostrar 
-          a ele qual é a correta quanto para mostrar a alternativa que ele escolheu  
-        */  
-        const respostas = this.#respostas.map((resposta,i)=>{
+        /*
+         Agora para obter os outros dados da resposta 
+         que veio eu tenho que percorrer as repostas que vieram  
+         e vou pegar o indice da reposta certa
+        */
+
+         const resposta = this.#respostas.map((resposta,i)=>{
+            
+            /*
+             comparando se o indice da resposta que chegou é o mesmo
+             indice da resposta correta
+            */ 
             const respostaSelecionada = indice === i 
-            const deveRevelar = respostaSelecionada || resposta.certa 
-            return respostaSelecionada ? resposta.revelar() : resposta
-        })
+            /*
+             se for aqui eu testo se a resposta está correta
+             se ela for a reposta selecion ou se ela for a reposta certa 
+             a varivel deveRevbelar recebe true  
+            */
 
-      
-        
+            const deveRevelar = respostaSelecionada || resposta.certa
 
+            /*
+              aqui eu testo se deveRevelar e verdadeira se for ele revela a reposta ,
+              se não ele so retorna resposta que recebeu 
+            */
+            return deveRevelar ? resposta.revelar(): resposta
+             
+         })
+
+         return new QuestaoModel(this.id,this.enunciado,respostas, acertou)
      }
+     
+
+
+
+
+
+
 
      /* 
       essa função vai converter a questão recebida como parâmetro
@@ -107,6 +133,7 @@ export default class QuestaoModel{
         return{
             id: this.#id,
             enunciado: this.#enunciado,
+            respondida: this.respondida,
             respostas: this.#respostas.map(resp => resp.paraObjeto()),
             acertou: this.#acertou
 
