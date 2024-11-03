@@ -22,7 +22,7 @@ export default function Resposta(props:RespostaProps){
             
 
             <div className={styles.conteudoResposta}>
-                <div className={styles.frente}>
+              {/*  <div className={styles.frente}>
 
                     <div className={styles.letra}
                         style={{backgroundColor:props.corFundoLetra}}
@@ -34,10 +34,18 @@ export default function Resposta(props:RespostaProps){
                         {resposta.valor}
                     </div>
                 </div>
+                */}
 
 
 
                 <div className={styles.verso}>
+                    <div className={styles.certa}>
+                        <div>
+                            A resposta certa é ...
+                        </div>
+                        <div className={styles.valor}>{resposta.valor}</div>
+
+                    </div>
 
                 </div>
                
