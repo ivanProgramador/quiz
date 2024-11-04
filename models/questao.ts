@@ -71,7 +71,7 @@ export default class QuestaoModel{
 
 
 
-     reponderCom(indice:number):QuestaoModel{
+     responderCom(indice:number):QuestaoModel{
 
         /*
          Verificando se o cliente acertou a resposta.
@@ -111,7 +111,7 @@ export default class QuestaoModel{
              
          })
 
-         return new QuestaoModel(this.id,this.enunciado,respostas, acertou)
+         return new QuestaoModel(this.id,this.enunciado,resposta, acertou)
      }
      
 
