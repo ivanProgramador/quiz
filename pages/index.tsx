@@ -5,11 +5,11 @@ import { useState } from "react";
 
 
 
-const questaoMock = new QuestaoModel(1,'qual é a melhor cor?',[
-  RespostaModel.errada('Verde'),
-  RespostaModel.errada('Vermelha'),
-  RespostaModel.errada('Azul'),
-  RespostaModel.certa('Preta')
+const questaoMock = new QuestaoModel(1,'qual é a capital do brasil ?',[
+  RespostaModel.errada('Rio de janeiro'),
+  RespostaModel.errada('Fortaleza'),
+  RespostaModel.errada('São Paulo'),
+  RespostaModel.certa('Brasilia')
 ])
 
 
