@@ -25,7 +25,10 @@ export default function Home() {
   }
 
   function tempoEsgotado(){
-    setQuestao(questao.responderCom(-1));
+    if(questao.naoRespondida){
+      setQuestao(questao.responderCom(-1));
+    }
+   
  }
 
 

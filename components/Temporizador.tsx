@@ -9,6 +9,7 @@ interface TemporizadorProps{
     duracao: number
     tempoEsgotado: ()=>void;
 }
+
 export default function Temporizador(props: TemporizadorProps){
     return(
         <div className={styles.Temporizador}>
@@ -21,7 +22,12 @@ export default function Temporizador(props: TemporizadorProps){
               colors={['#BCE596', '#F7B801', '#ED827A']}        
               colorsTime={[10,3,0]}
 
-            ></CountdownCircleTimer>
+            >
+
+               {({remainingTime})=> remainingTime}
+            </CountdownCircleTimer>
+
+           
 
 
         </div>

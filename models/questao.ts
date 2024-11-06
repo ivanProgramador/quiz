@@ -43,7 +43,9 @@ export default class QuestaoModel{
 
 
 
-
+    get naoRespondida(){
+        return !this.respondida
+    }
 
     get respondida(){
         /*
