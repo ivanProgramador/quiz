@@ -21,11 +21,12 @@ export default function Home() {
   
  
   function respostaFornecida(indice:number){
-      
-     
-
      setQuestao(questao.responderCom(indice));
   }
+
+  function tempoEsgotado(){
+    setQuestao(questao.responderCom(-1));
+ }
 
 
   
@@ -37,7 +38,11 @@ export default function Home() {
        alignItems:'center',
        height:'100vh'
     }} >
-       <Questao respostaFornecida={respostaFornecida} valor={questao} /> 
+       <Questao 
+        respostaFornecida={respostaFornecida}
+        valor={questao}
+        tempoEsgotado={tempoEsgotado}
+        /> 
     </div>
         
     
