@@ -42,6 +42,7 @@ export default function Home() {
        height:'100vh'
     }} >
        <Questao 
+        tempoResposta={5}
         respostaFornecida={respostaFornecida}
         valor={questao}
         tempoEsgotado={tempoEsgotado}
