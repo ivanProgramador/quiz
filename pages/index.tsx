@@ -1,3 +1,4 @@
+import Botao from "@/components/Botao";
 import Questao from "@/components/Questao";
 import QuestaoModel from "@/models/questao";
 import RespostaModel from "@/models/resposta";
@@ -47,6 +48,7 @@ export default function Home() {
         valor={questao}
         tempoEsgotado={tempoEsgotado}
         /> 
+        <Botao texto="teste" href="/resultado" ></Botao>
     </div>
         
     

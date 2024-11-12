@@ -12,23 +12,21 @@ interface BotaoProps{
 
 export default function Botao(props: BotaoProps){
    
-    
-
-    return props.href? (  
-        <link href={props.href}>
+    function renderizarBotao(){
+        return(
             <button className={styles.botao}
                onClick={props.onClick}
               >
                 {props.texto}
             </button>
+        )
+    }
+
+    return props.href? (  
+        <link href={props.href}>
+            {renderizarBotao()}
+            
         </link>
-    ):(
-        <button className={styles.botao}
-               onClick={props.onClick}
-              >
-                {props.texto}
-            </button>
-    )
+    ):renderizarBotao();
 }
 
-module.exports = Botao;
