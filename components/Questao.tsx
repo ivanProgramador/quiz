@@ -14,7 +14,7 @@ const letras=[
 
 interface QuestaoProps {
     valor: QuestaoModel
-    tempoResposta?:number
+    tempoPraResposta?:number
     respostaFornecida: (indice:number) => void
     tempoEsgotado: ()=>void
 
