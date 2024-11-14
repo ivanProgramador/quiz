@@ -2,9 +2,16 @@
     color: #fff;
     border-radius: 8px;
     font-weight: 200;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     border: none;
     margin-top: 40px;
     padding: 10px 25px;
     background-color:#9885F0;
+    cursor: pointer;
+    transition: all .2 ease-in-out;
+
+}
+
+.botao:hover{
+    transform: scale(1.1);
 }

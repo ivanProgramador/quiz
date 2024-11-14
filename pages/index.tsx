@@ -1,4 +1,5 @@
-import Botao from "@/components/Botao";
+
+import Botao from "../components/Botao"
 import Questao from "@/components/Questao";
 import QuestaoModel from "@/models/questao";
 import RespostaModel from "@/models/resposta";
@@ -38,6 +39,7 @@ export default function Home() {
   return (
     <div style={{
        display:'flex',
+       flexDirection:'column',
        justifyContent:'center',
        alignItems:'center',
        height:'100vh'
@@ -48,7 +50,8 @@ export default function Home() {
         valor={questao}
         tempoEsgotado={tempoEsgotado}
         /> 
-        <Botao texto="teste" href="/resultado" ></Botao>
+        <Botao texto="TESTE" href="/resultado" ></Botao>
+        
     </div>
         
     
