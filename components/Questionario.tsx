@@ -12,7 +12,7 @@ interface QuestionarioProps{
 }
 
 
-export function Questionario(props: QuestionarioProps){
+export default function Questionario(props: QuestionarioProps){
 
     function respostaFornecida(indice: number) {
 

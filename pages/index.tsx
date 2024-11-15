@@ -1,9 +1,8 @@
 
-import Botao from "../components/Botao"
-import Questao from "@/components/Questao";
 import QuestaoModel from "@/models/questao";
 import RespostaModel from "@/models/resposta";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Questionario from "../components/Questionario";
 
 
 
@@ -16,43 +15,74 @@ const questaoMock = new QuestaoModel(1,'qual é a capital do brasil ?',[
 
 
 
-
+const BASE_URL = 'http://localhost:3000/api';
 export default function Home() {
-
-  const [questao,setQuestao] = useState(questaoMock)
   
- 
-  function respostaFornecida(indice:number){
-     setQuestao(questao.responderCom(indice));
+  const [idsDasQuestoes,setIdsDasQuestoes] = useState<number[]>([]);
+
+  const [questao,setQuestao] = useState<QuestaoModel>(questaoMock);
+  
+  const[respostasCertas, setrespostasCertas] = useState<number>(0);
+
+
+  async function carregarIdsDasQuestoes(){
+
+     const resp = await fetch(`${BASE_URL}/questionario`);
+     const idsDasQuestoes = await resp.json();
+     setIdsDasQuestoes(idsDasQuestoes);
+
   }
 
-  function tempoEsgotado(){
-    if(questao.naoRespondida){
-      setQuestao(questao.responderCom(-1));
-    }
-   
+  async function carregarQuestao(idQuestao:number){
+
+    const resp = await fetch(`${BASE_URL}/questoes/${idQuestao}`);
+    const json = await resp.json();
+    const novaQuestao = QuestaoModel.criarUsandoObjeto(json);
+    setQuestao(novaQuestao);
  }
+
+  //amortecedor de efeitos colaterais
+
+  useEffect(()=>{
+    carregarIdsDasQuestoes();
+  },[]);
+  
+  useEffect(()=>{
+    
+    idsDasQuestoes.length > 0 && carregarQuestao(idsDasQuestoes[0]);
+
+  },[idsDasQuestoes]);
+
+  
+  function questaoRespondida(questaoRespondida:QuestaoModel){
+    setQuestao(questaoRespondida);
+    const acertou = questaoRespondida.acertou;
+    setrespostasCertas(respostasCertas +(acertou? 1:0));
+
+  }
+
+
+  function irPraProximoPasso(){
+
+  }
+ 
+   
 
 
   
   
   return (
-    <div style={{
-       display:'flex',
-       flexDirection:'column',
-       justifyContent:'center',
-       alignItems:'center',
-       height:'100vh'
-    }} >
-       <Questao 
-        tempoResposta={5}
-        respostaFornecida={respostaFornecida}
-        valor={questao}
-        tempoEsgotado={tempoEsgotado}
-        /> 
-        <Botao texto="TESTE" href="/resultado" ></Botao>
+   
+       <Questionario
+         questao={questao}
+         ultima={false}
+         questaoRespondida={questaoRespondida}
+         irPraProximoPasso={irPraProximoPasso}
+
+       
+       />
         
-    </div>
+   
         
     
   );
