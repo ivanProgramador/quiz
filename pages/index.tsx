@@ -3,24 +3,20 @@ import QuestaoModel from "@/models/questao";
 import RespostaModel from "@/models/resposta";
 import { useEffect, useState } from "react";
 import Questionario from "../components/Questionario";
+import { useRouter } from "next/router";
 
-
-
-const questaoMock = new QuestaoModel(1,'qual é a capital do brasil ?',[
-  RespostaModel.errada('Rio de janeiro'),
-  RespostaModel.errada('Fortaleza'),
-  RespostaModel.errada('São Paulo'),
-  RespostaModel.certa('Brasilia')
-])
 
 
 
 const BASE_URL = 'http://localhost:3000/api';
+
 export default function Home() {
+
+  const router = useRouter();
   
   const [idsDasQuestoes,setIdsDasQuestoes] = useState<number[]>([]);
 
-  const [questao,setQuestao] = useState<QuestaoModel>(questaoMock);
+  const [questao,setQuestao] = useState<QuestaoModel>();
   
   const[respostasCertas, setrespostasCertas] = useState<number>(0);
 
@@ -62,28 +58,68 @@ export default function Home() {
   }
 
 
+  //antes de ir para porxima pergunta eu preciso saber qual é o id 
+  //da pergunta atual enrtão eu vou essa função para pegar esse id 
+  //e adicionar mais 1
+
+  function idProximaPergunta(){
+
+  
+
+      const proximoIndice = idsDasQuestoes.indexOf(questao.id) + 1;
+   
+       return idsDasQuestoes[proximoIndice];
+
+    
+    
+  }
+
+  //agora essa função vai de fato para a o proximo passo
+  //com base no id que eu peguei 
+  
   function irPraProximoPasso(){
+    const proximoId = idProximaPergunta();
+    proximoId ? irPraProximaQuestao(proximoId): finalizar()
+  }
+
+  function irPraProximaQuestao(proximoId:number){
+    carregarQuestao(proximoId);
 
   }
+
+  function finalizar(){
+    router.push({
+      pathname:'/resultado',
+      query:{
+        total: idsDasQuestoes.length,
+        certas: respostasCertas
+      }
+    })
+   
+
+
+
+  }
+
+
  
    
 
 
   
   
-  return (
-   
-       <Questionario
-         questao={questao}
-         ultima={false}
-         questaoRespondida={questaoRespondida}
-         irPraProximoPasso={irPraProximoPasso}
-
-       
-       />
+  return questao ? <Questionario
+             questao={questao}
+             ultima={idProximaPergunta() === undefined }
+             questaoRespondida={questaoRespondida}
+             irPraProximoPasso={irPraProximoPasso}
+    /> :false
+  }
+     
+      
         
    
         
     
-  );
-}
+  
+
