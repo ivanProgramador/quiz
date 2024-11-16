@@ -12,12 +12,29 @@
     position: relative;
 
 }
+
+.respostaRevelada.conteudoResposta{
+    transform: rotateY(180deg);
+
+}
+
+
+
+
+
+
 .frente, .verso{
     position: absolute;
     display: flex;
     height: 100%;
     width: 100%;
+    --webkit-backface-visibility:hidden;
+    backface-visibility: hidden;
 
+}
+
+.verso{
+    transform: rotateY(180deg);
 }
 .frente{
     color: #000;
