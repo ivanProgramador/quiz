@@ -13,7 +13,7 @@ export default function Resposta(props:RespostaProps){
 
     const resposta = props.valor
 
-    const respostaRevelada = resposta.revelada ? styles.respostaReverlada:'';
+    const respostaRevelada = resposta.revelada ? styles.respostaRevelada:'';
      
     return(
         <div className={styles.resposta}
