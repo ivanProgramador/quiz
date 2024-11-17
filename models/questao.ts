@@ -9,7 +9,7 @@ export default class QuestaoModel{
     #acertou:boolean 
    // #respondida:boolean
     
-    constructor(id:number,enunciado:string,repostas:RespostaModel[],acertou:false){
+    constructor(id:number,enunciado:string,repostas:RespostaModel[],acertou:boolean){
         this.#id = id 
         this.#enunciado = enunciado
         this.#respostas = repostas
