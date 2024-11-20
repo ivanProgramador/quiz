@@ -1,6 +1,6 @@
 import questoes from '../bancoDeQuestoes'
 
-export default (req,res)=>{
+export default (req:any,res:any)=>{
      
      /*
       pegando o id da pergunta que foi solicitada pela requisição 

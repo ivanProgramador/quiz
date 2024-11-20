@@ -1,6 +1,7 @@
 import { embaralhar } from "@/functions/arrays"
 import RespostaModel from "./resposta"
 
+
 export default class QuestaoModel{
 
     #id:number 
@@ -9,7 +10,7 @@ export default class QuestaoModel{
     #acertou:boolean 
    // #respondida:boolean
     
-    constructor(id:number,enunciado:string,repostas:RespostaModel[],acertou:boolean){
+    constructor(id:number,enunciado:string,repostas:RespostaModel[],acertou = false){
         this.#id = id 
         this.#enunciado = enunciado
         this.#respostas = repostas
