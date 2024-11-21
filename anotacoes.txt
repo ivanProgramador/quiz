@@ -96,7 +96,7 @@ numeros.map(num=>{numeros:num,aleatorio:Math.random}).sort((obj1,obj2) => ob1.al
 
 assim eu recupero o mesmo array so que ordenado com base no numero aleatorio que criei 
 
-
+DEPLOY CONCLUIDO NA VERCEL CLOUD
 
 
 
